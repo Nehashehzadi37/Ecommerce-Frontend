@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — ShopZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="product.css" />
+  <script src="product.js"></script>
+</head>
+<body>
+
+  <!-- ============ ANNOUNCEMENT BAR ============ -->
+  <div class="announcement-bar">
+    <p>🚚 Free Shipping on orders over $50 &nbsp;|&nbsp; 🌍 Ship to 200+ countries &nbsp;|&nbsp; 🔒 Secure Payments</p>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="logo-colored.png" alt="ShopZone Logo" />
+          <span>ShopZone</span>
+        </a>
+        <div class="search-bar">
+          <div class="search-category">
+            <select id="searchCategory">
+              <option>All Categories</option>
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Home & Interior</option>
+              <option>Sports</option>
+            </select>
+          </div>
+          <input type="text" id="searchInput" placeholder="Search products, brands and more..." />
+          <button class="search-btn" onclick="handleSearch()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+        <div class="header-actions">
+          <div class="lang-selector dropdown">
+            <button class="lang-btn dropdown-toggle">
+              <img src="GB@2x.png" alt="EN" />
+              <span>EN</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown-menu lang-menu">
+              <a href="#" onclick="changeLang('EN','GB@2x')"><img src="GB@2x.png"> English</a>
+              <a href="#" onclick="changeLang('AR','AE@2x')"><img src="AE@2x.png"> Arabic</a>
+              <a href="#" onclick="changeLang('CN','CN@2x')"><img src="CN@2x.png"> Chinese</a>
+              <a href="#" onclick="changeLang('DE','DE@2x')"><img src="DE@2x.png"> German</a>
+              <a href="#" onclick="changeLang('FR','FR@2x')"><img src="FR@2x.png"> French</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            
+          
+          </div>
+          <button class="icon-btn" title="Wishlist" onclick="goToWishlist()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Wishlist</span>
+          </button>
+          <button class="cart-btn" onclick="openCart()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    
+  </header>
+
+  <!-- ============ BREADCRUMB ============ -->
+ 
+  </div>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <div class="shop-layout">
+    <div class="container">
+      <div class="shop-grid">
+
+        <!-- ===== SIDEBAR FILTERS ===== -->
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar-header">
+            <h3>Filters</h3>
+            <button class="clear-filters-btn" onclick="clearAllFilters()">Clear All</button>
+          </div>
+
+          <!-- Category -->
+          <div class="filter-group">
+            <h4 class="filter-title" onclick="toggleFilter(this)">
+              Category
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </h4>
+            <div class="filter-body">
+              <label class="filter-check"><input type="radio" name="cat" value="all" checked onchange="applyFilters()"> All Products</label>
+              <label class="filter-check"><input type="radio" name="cat" value="electronics" onchange="applyFilters()"> Electronics <span class="filter-count">12</span></label>
+              <label class="filter-check"><input type="radio" name="cat" value="fashion" onchange="applyFilters()"> Fashion <span class="filter-count">8</span></label>
+              <label class="filter-check"><input type="radio" name="cat" value="interior" onchange="applyFilters()"> Home & Interior <span class="filter-count">6</span></label>
+              <label class="filter-check"><input type="radio" name="cat" value="sports" onchange="applyFilters()"> Sports <span class="filter-count">4</span></label>
+            </div>
+          </div>
+
+          <!-- Price Range -->
+          <div class="filter-group">
+            <h4 class="filter-title" onclick="toggleFilter(this)">
+              Price Range
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </h4>
+            <div class="filter-body">
+              <div class="price-range">
+                <div class="price-inputs">
+                  <input type="number" id="priceMin" placeholder="Min $" value="0" min="0" onchange="applyFilters()" />
+                  <span>—</span>
+                  <input type="number" id="priceMax" placeholder="Max $" value="500" min="0" onchange="applyFilters()" />
+                </div>
+                <input type="range" id="priceSlider" min="0" max="500" value="500" oninput="updatePriceSlider(this.value)" />
+                <div class="price-labels">
+                  <span>$0</span>
+                  <span id="priceSliderVal">$500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div class="filter-group">
+            <h4 class="filter-title" onclick="toggleFilter(this)">
+              Rating
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </h4>
+            <div class="filter-body">
+              <label class="filter-check"><input type="radio" name="rating" value="0" checked onchange="applyFilters()"> All Ratings</label>
+              <label class="filter-check"><input type="radio" name="rating" value="4" onchange="applyFilters()"> <span class="mini-stars">★★★★</span>★ & up</label>
+              <label class="filter-check"><input type="radio" name="rating" value="3" onchange="applyFilters()"> <span class="mini-stars">★★★</span>☆☆ & up</label>
+              <label class="filter-check"><input type="radio" name="rating" value="2" onchange="applyFilters()"> <span class="mini-stars">★★</span>☆☆☆ & up</label>
+            </div>
+          </div>
+
+          <!-- Discount -->
+          <div class="filter-group">
+            <h4 class="filter-title" onclick="toggleFilter(this)">
+              Discount
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </h4>
+            <div class="filter-body">
+              <label class="filter-check"><input type="checkbox" value="10" onchange="applyFilters()"> 10% or more</label>
+              <label class="filter-check"><input type="checkbox" value="20" onchange="applyFilters()"> 20% or more</label>
+              <label class="filter-check"><input type="checkbox" value="30" onchange="applyFilters()"> 30% or more</label>
+              <label class="filter-check"><input type="checkbox" value="50" onchange="applyFilters()"> 50% or more</label>
+            </div>
+          </div>
+
+          <!-- Availability -->
+          <div class="filter-group">
+            <h4 class="filter-title" onclick="toggleFilter(this)">
+              Availability
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </h4>
+            <div class="filter-body">
+              <label class="filter-check"><input type="checkbox" checked onchange="applyFilters()"> In Stock</label>
+              <label class="filter-check"><input type="checkbox" onchange="applyFilters()"> Pre-Order</label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ===== PRODUCTS AREA ===== -->
+        <main class="products-area">
+
+          <!-- Toolbar -->
+          <div class="products-toolbar">
+            <div class="toolbar-left">
+              <button class="filter-toggle-btn" onclick="toggleSidebar()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="10" y2="18"/></svg>
+                Filters
+              </button>
+              <div class="active-filters" id="activeFilters"></div>
+            </div>
+            <div class="toolbar-right">
+              <div class="sort-select-wrap">
+                <label>Sort by:</label>
+                <select id="sortSelect" onchange="applyFilters()">
+                  <option value="featured">Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="rating">Top Rated</option>
+                  <option value="newest">Newest</option>
+                  <option value="discount">Biggest Discount</option>
+                </select>
+              </div>
+              <div class="view-toggle">
+                <button class="view-btn active" onclick="setView('grid', this)" title="Grid View">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="view-btn" onclick="setView('list', this)" title="List View">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="pl-grid grid-view" id="productListGrid">
+
+            <!-- Product 1 -->
+            <div class="pl-card" data-cat="electronics" data-price="89.99" data-rating="5" data-discount="31" data-id="1">
+              <div class="pl-img-wrap">
+                <span class="badge badge-hot">HOT</span>
+                <img src="image 23.png" alt="Smart Watch Pro X200" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(1)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(1)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">TechBrand</p>
+                <h3 class="product-name"><a href="product-detail.html">Smart Watch Pro X200</a></h3>
+                <div class="product-rating"><div class="stars">★★★★★</div><span>(128)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$89.99</span>
+                  <span class="price-old">$129.99</span>
+                  <span class="price-save">31% off</span>
+                </div>
+                <p class="pl-desc">Track health and fitness with heart rate monitoring, GPS, 7-day battery, and water resistance up to 50m. Compatible with iOS & Android.</p>
+                <button class="btn btn-cart" onclick="addToCart(1,'Smart Watch Pro X200',89.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="pl-card" data-cat="electronics" data-price="49.99" data-rating="4" data-discount="37" data-id="2">
+              <div class="pl-img-wrap">
+                <span class="badge badge-new">NEW</span>
+                <img src="image 29.png" alt="Wireless Earbuds Elite" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(2)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(2)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">SoundMax</p>
+                <h3 class="product-name"><a href="product-detail.html">Wireless Earbuds Elite</a></h3>
+                <div class="product-rating"><div class="stars">★★★★☆</div><span>(84)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$49.99</span>
+                  <span class="price-old">$79.99</span>
+                  <span class="price-save">37% off</span>
+                </div>
+                <p class="pl-desc">Active noise cancellation, 30hrs total playback, quick charge, IPX5 sweat-proof rating. Crystal-clear audio in every environment.</p>
+                <button class="btn btn-cart" onclick="addToCart(2,'Wireless Earbuds Elite',49.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="pl-card" data-cat="fashion" data-price="59.99" data-rating="5" data-discount="40" data-id="3">
+              <div class="pl-img-wrap">
+                <img src="image 24.png" alt="Premium Casual Jacket" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(3)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(3)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">FashionHub</p>
+                <h3 class="product-name"><a href="product-detail.html">Premium Casual Jacket</a></h3>
+                <div class="product-rating"><div class="stars">★★★★★</div><span>(256)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$59.99</span>
+                  <span class="price-old">$99.99</span>
+                  <span class="price-save">40% off</span>
+                </div>
+                <p class="pl-desc">Versatile all-season jacket crafted from premium cotton-blend. Slim fit, concealed zip pockets, relaxed collar. Available in 6 colors.</p>
+                <button class="btn btn-cart" onclick="addToCart(3,'Premium Casual Jacket',59.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="pl-card" data-cat="fashion" data-price="34.99" data-rating="4" data-discount="41" data-id="4">
+              <div class="pl-img-wrap">
+                <span class="badge badge-sale">SALE</span>
+                <img src="image 26.png" alt="Summer Floral Dress" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(4)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(4)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">StyleCo</p>
+                <h3 class="product-name"><a href="product-detail.html">Summer Floral Dress</a></h3>
+                <div class="product-rating"><div class="stars">★★★★☆</div><span>(192)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$34.99</span>
+                  <span class="price-old">$59.99</span>
+                  <span class="price-save">41% off</span>
+                </div>
+                <p class="pl-desc">Light and breezy floral dress. Breathable fabric, A-line silhouette. Perfect for summer. Sizes XS–XXL available.</p>
+                <button class="btn btn-cart" onclick="addToCart(4,'Summer Floral Dress',34.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="pl-card" data-cat="interior" data-price="44.99" data-rating="5" data-discount="35" data-id="5">
+              <div class="pl-img-wrap">
+                <img src="1.png" alt="Nordic Table Lamp" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(5)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(5)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">HomeDecor</p>
+                <h3 class="product-name"><a href="product-detail.html">Nordic Table Lamp</a></h3>
+                <div class="product-rating"><div class="stars">★★★★★</div><span>(67)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$44.99</span>
+                  <span class="price-old">$69.99</span>
+                  <span class="price-save">35% off</span>
+                </div>
+                <p class="pl-desc">Minimalist Scandinavian design, warm 3000K LED bulb. Height-adjustable with 360° rotatable head. Ideal for bedside or desk.</p>
+                <button class="btn btn-cart" onclick="addToCart(5,'Nordic Table Lamp',44.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="pl-card" data-cat="electronics" data-price="199.99" data-rating="5" data-discount="33" data-id="6">
+              <div class="pl-img-wrap">
+                <span class="badge badge-hot">HOT</span>
+                <img src="image 34.png" alt="Digital Camera 4K" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(6)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(6)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">SnapPro</p>
+                <h3 class="product-name"><a href="product-detail.html">Digital Camera 4K UHD</a></h3>
+                <div class="product-rating"><div class="stars">★★★★★</div><span>(311)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$199.99</span>
+                  <span class="price-old">$299.99</span>
+                  <span class="price-save">33% off</span>
+                </div>
+                <p class="pl-desc">4K video, 24MP stills, built-in stabilization, 30x optical zoom, Wi-Fi. The perfect camera for creators and travelers.</p>
+                <button class="btn btn-cart" onclick="addToCart(6,'Digital Camera 4K UHD',199.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="pl-card" data-cat="interior" data-price="24.99" data-rating="4" data-discount="37" data-id="7">
+              <div class="pl-img-wrap">
+                <img src="3.png" alt="Ceramic Vase" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(7)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(7)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">ArtHaus</p>
+                <h3 class="product-name"><a href="product-detail.html">Ceramic Decorative Vase</a></h3>
+                <div class="product-rating"><div class="stars">★★★★☆</div><span>(43)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$24.99</span>
+                  <span class="price-old">$39.99</span>
+                  <span class="price-save">37% off</span>
+                </div>
+                <p class="pl-desc">Hand-crafted ceramic with matte glaze finish. Perfect centrepiece for modern and minimalist interiors.</p>
+                <button class="btn btn-cart" onclick="addToCart(7,'Ceramic Decorative Vase',24.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="pl-card" data-cat="sports" data-price="39.99" data-rating="5" data-discount="38" data-id="8">
+              <div class="pl-img-wrap">
+                <span class="badge badge-new">NEW</span>
+                <img src="image 30.png" alt="Pro Sports Set" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(8)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(8)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">ActiveWear</p>
+                <h3 class="product-name"><a href="product-detail.html">Pro Sports Set</a></h3>
+                <div class="product-rating"><div class="stars">★★★★★</div><span>(175)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$39.99</span>
+                  <span class="price-old">$64.99</span>
+                  <span class="price-save">38% off</span>
+                </div>
+                <p class="pl-desc">Moisture-wicking performance fabric. Top + shorts with ergonomic seaming for full range of motion. Machine washable.</p>
+                <button class="btn btn-cart" onclick="addToCart(8,'Pro Sports Set',39.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="pl-card" data-cat="electronics" data-price="129.99" data-rating="4" data-discount="28" data-id="9">
+              <div class="pl-img-wrap">
+                <img src="image 23.png" alt="Bluetooth Speaker" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(9)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(9)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">SoundMax</p>
+                <h3 class="product-name"><a href="product-detail.html">Bluetooth Speaker 360°</a></h3>
+                <div class="product-rating"><div class="stars">★★★★☆</div><span>(98)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$129.99</span>
+                  <span class="price-old">$179.99</span>
+                  <span class="price-save">28% off</span>
+                </div>
+                <p class="pl-desc">360° surround sound, 24hr battery, waterproof IPX7. Pair 2 speakers for stereo. Perfect for outdoors and travel.</p>
+                <button class="btn btn-cart" onclick="addToCart(9,'Bluetooth Speaker 360°',129.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="pl-card" data-cat="interior" data-price="89.99" data-rating="5" data-discount="25" data-id="10">
+              <div class="pl-img-wrap">
+                <img src="6.png" alt="Wall Art Set" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(10)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(10)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">ArtHaus</p>
+                <h3 class="product-name"><a href="product-detail.html">Abstract Wall Art Set</a></h3>
+                <div class="product-rating"><div class="stars">★★★★★</div><span>(52)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$89.99</span>
+                  <span class="price-old">$119.99</span>
+                  <span class="price-save">25% off</span>
+                </div>
+                <p class="pl-desc">Set of 3 premium canvas prints. Ready-to-hang with included hardware. Elevate any living room or office wall.</p>
+                <button class="btn btn-cart" onclick="addToCart(10,'Abstract Wall Art Set',89.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 11 -->
+            <div class="pl-card" data-cat="electronics" data-price="299.99" data-rating="5" data-discount="25" data-id="11">
+              <div class="pl-img-wrap">
+                <span class="badge badge-hot">HOT</span>
+                <img src="8.png" alt="Laptop Stand Pro" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(11)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(11)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">TechBrand</p>
+                <h3 class="product-name"><a href="product-detail.html">Tablet Pro 10.5"</a></h3>
+                <div class="product-rating"><div class="stars">★★★★★</div><span>(204)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$299.99</span>
+                  <span class="price-old">$399.99</span>
+                  <span class="price-save">25% off</span>
+                </div>
+                <p class="pl-desc">10.5" AMOLED display, Octa-core processor, 8GB RAM, 128GB storage. Ideal for work, creative projects, and entertainment.</p>
+                <button class="btn btn-cart" onclick="addToCart(11,'Tablet Pro 10.5',299.99)">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Product 12 -->
+            <div class="pl-card" data-cat="fashion" data-price="79.99" data-rating="4" data-discount="20" data-id="12">
+              <div class="pl-img-wrap">
+                <img src="Bitmap.png" alt="Leather Handbag" />
+                <div class="product-overlay">
+                  <button class="overlay-btn" onclick="addToWishlist(12)" title="Wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                  <button class="overlay-btn" onclick="quickView(12)" title="Quick View"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+              <div class="pl-info">
+                <p class="product-brand">StyleCo</p>
+                <h3 class="product-name"><a href="product-detail.html">Classic Leather Handbag</a></h3>
+                <div class="product-rating"><div class="stars">★★★★☆</div><span>(88)</span></div>
+                <div class="product-price">
+                  <span class="price-current">$79.99</span>
+                  <span class="price-old">$99.99</span>
+                  <span class="price-save">20% off</span>
+                </div>
+                <p class="pl-desc">Genuine leather with gold-tone hardware. Spacious interior with multiple pockets. Timeless design for every occasion.</p>
+                <button class="btn btn-cart" onclick="addToCart(12,'Classic Leather Handbag',79.99)">Add to Cart</button>
+              </div>
+            </div>
+
+          </div><!-- /pl-grid -->
+
+          <!-- No Results -->
+          <div class="no-results" id="noResults" style="display:none;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <h3>No products found</h3>
+            <p>Try adjusting your filters or search terms</p>
+            <button class="btn btn-primary" onclick="clearAllFilters()">Clear Filters</button>
+          </div>
+
+
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="logo-colored.png" alt="ShopZone" />
+            <span>ShopZone</span>
+          </div>
+          <p>Your trusted global marketplace connecting buyers and sellers from 200+ countries worldwide.</p>
+          <div class="footer-social">
+            <a href="#" title="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" title="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+            <a href="#" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+ 
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+ 
+        <div class="footer-links">
+          <h4>Customer Service</h4>
+          <ul>
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+ 
+        <div class="footer-links">
+          <h4>For Suppliers</h4>
+          <ul>
+            <li><a href="#">Sell on ShopZone</a></li>
+            <li><a href="#">Supplier Portal</a></li>
+            <li><a href="#">Advertise</a></li>
+            <li><a href="#">Partner Program</a></li>
+          </ul>
+        </div>
+ 
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📞 +1 (800) 123-4567</p>
+          <p>✉️ support@shopzone.com</p>
+          <p>🕐 Mon–Fri, 9am–6pm EST</p>
+          <div class="footer-flags">
+            <img src="US@2x.png" alt="US" title="United States" />
+            <img src="GB@2x.png" alt="UK" title="United Kingdom" />
+            <img src="DE@2x.png" alt="DE" title="Germany" />
+            <img src="CN@2x.png" alt="CN" title="China" />
+            <img src="FR@2x.png" alt="FR" title="France" />
+          </div>
+        </div>
+      </div>
+ 
+      <div class="footer-bottom">
+        <p>© 2025 ShopZone. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header"><h3>Your Cart <span id="cartItemCount">(0 items)</span></h3><button onclick="closeCart()" class="close-btn">✕</button></div>
+    <div class="cart-body" id="cartBody"><div class="cart-empty"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p>Your cart is empty</p><a href="product.html" class="btn btn-primary" onclick="closeCart()">Start Shopping</a></div></div>
+    <div class="cart-footer" id="cartFooter" style="display:none;"><div class="cart-total"><span>Total:</span><strong id="cartTotal">$0.00</strong></div><button class="btn btn-primary full-width" onclick="checkout()">Checkout</button></div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- QUICK VIEW MODAL -->
+  <div class="modal-overlay" id="quickViewOverlay" onclick="closeQuickView()"></div>
+  <div class="modal" id="quickViewModal">
+    <button class="close-btn modal-close" onclick="closeQuickView()">✕</button>
+    <div class="modal-content" id="quickViewContent"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopZone — Your Global Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+</head>
+<body>
+ 
+  <!-- ============ TOP ANNOUNCEMENT BAR ============ -->
+  <div class="announcement-bar">
+    <p>🚚 Free Shipping on orders over $50 &nbsp;|&nbsp; 🌍 Ship to 200+ countries &nbsp;|&nbsp; 🔒 Secure Payments</p>
+  </div>
+ 
+  <!-- ============ HEADER / NAVBAR ============ -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+ 
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="brandlogo.png" alt="ShopZone Logo" class="logo" />
+          <span>ShopZone</span>
+        </a>
+ 
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <div class="search-category">
+            <select id="searchCategory">
+              <option>All Categories</option>
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Home & Interior</option>
+              <option>Sports</option>
+            </select>
+          </div>
+          <input type="text" id="searchInput" placeholder="Search products, brands and more..." />
+          <button class="search-btn" onclick="handleSearch()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+ 
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <!-- Language Selector -->
+          <div class="lang-selector dropdown">
+            <button class="lang-btn dropdown-toggle">
+              <img src="GB@2x.png" alt="EN" />
+              <span>EN</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="dropdown-menu lang-menu">
+              <a href="#" onclick="changeLang('EN','GB@2x')"><img src="GB@2x.png"> English</a>
+              <a href="#" onclick="changeLang('AR','AE@2x')"><img src="AE@2x.png"> Arabic</a>
+              <a href="#" onclick="changeLang('CN','CN@2x')"><img src="CN@2x.png"> Chinese</a>
+              <a href="#" onclick="changeLang('DE','DE@2x')"><img src="DE@2x.png"> German</a>
+              <a href="#" onclick="changeLang('FR','FR@2x')"><img src="FR@2x.png"> French</a>
+              <a href="#" onclick="changeLang('IT','IT@2x')"><img src="IT@2x.png"> Italian</a>
+            </div>
+          </div>
+ 
+          <!-- Account -->
+          <div class="dropdown">
+            
+            <div class="dropdown-menu">
+              <a href="#">My Profile</a>
+              <a href="#">Orders</a>
+              <a href="#">Wishlist</a>
+              <a href="#">Settings</a>
+              <hr/>
+              <a href="#" class="text-red">Sign Out</a>
+            </div>
+          </div>
+ 
+          <!-- Wishlist -->
+          <button class="icon-btn" title="Wishlist" onclick="goToWishlist()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Wishlist</span>
+          </button>
+ 
+          <!-- Cart -->
+          <button class="cart-btn" onclick="openCart()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </div>
+ 
+        <!-- Mobile menu toggle -->
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+ 
+
+  </header>
+ 
+  <!-- ============ HERO SECTION ============ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+ 
+        <!-- Main Hero Banner -->
+        <div class="hero-main">
+          <div class="hero-slider" id="heroSlider">
+            <!-- Slide 1 -->
+            <div class="hero-slide active" style="background-image: url('Group 982.png');">
+              <div class="hero-content">
+                <span class="hero-badge">New Arrivals 2025</span>
+                <h1>Latest <em>Tech & Gadgets</em> at Best Prices</h1>
+                <p>Shop cutting-edge electronics from top global brands</p>
+                <div class="hero-actions">
+                  <a href="product.html" class="btn btn-primary">Shop Now</a>
+                  <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="hero-slide" style="background-image: url('Banner-board-800x420 2.png');">
+              <div class="hero-content">
+                <span class="hero-badge">Summer Sale</span>
+                <h1>Trending <em>Fashion</em> Up to 60% Off</h1>
+                <p>Discover the latest styles from top designers</p>
+                <div class="hero-actions">
+                  <a href="product.html" class="btn btn-primary">Shop Fashion</a>
+                  <a href="#" class="btn btn-outline">View Lookbook</a>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="hero-slide" style="background-image: url('Group 969.png');">
+              <div class="hero-content">
+                <span class="hero-badge">Home Collection</span>
+                <h1>Transform Your <em>Living Space</em></h1>
+                <p>Premium furniture & décor for every home</p>
+                <div class="hero-actions">
+                  <a href="product.html" class="btn btn-primary">Explore</a>
+                  <a href="#" class="btn btn-outline">See Catalog</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slider Controls -->
+          <button class="slider-btn slider-prev" onclick="changeSlide(-1)">&#8249;</button>
+          <button class="slider-btn slider-next" onclick="changeSlide(1)">&#8250;</button>
+          <div class="slider-dots" id="sliderDots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+          </div>
+        </div>
+ 
+        <!-- Side Banners -->
+        <div class="hero-side">
+          <a href="product.html" class="side-banner">
+            <img src="Mask group.png" alt="Fashion Sale" />
+            <div class="side-banner-overlay">
+              <span>Fashion Sale</span>
+              <strong>Up to 50% off</strong>
+            </div>
+          </a>
+          <a href="product.html" class="side-banner">
+            <img src="Mask group (1).png" alt="Home Décor" />
+            <div class="side-banner-overlay">
+              <span>Home Décor</span>
+              <strong>New Collection</strong>
+            </div>
+          </a>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ============ STATS BAR ============ -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <div>
+            <strong>Free Shipping</strong>
+            <span>On orders over $50</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div>
+            <strong>Secure Payments</strong>
+            <span>100% protected</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <div>
+            <strong>Easy Returns</strong>
+            <span>30 day policy</span>
+          </div>
+        </div>
+        <div class="stat-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.12 6.12l1.17-1.17a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div>
+            <strong>24/7 Support</strong>
+            <span>Dedicated support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ============ CATEGORIES SECTION ============ -->
+  <section class="section categories-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">Browse By</span>
+          <h2 class="section-title">Shop by Category</h2>
+        </div>
+        <a href="product.html" class="view-all">View All <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></a>
+      </div>
+      <div class="categories-grid">
+        <a href="product.html" class="category-card" data-category="electronics">
+          <div class="cat-img-wrap">
+            <img src="image 23.png" alt="Electronics" />
+          </div>
+          <span>Electronics</span>
+        </a>
+        <a href="product.html" class="category-card" data-category="fashion">
+          <div class="cat-img-wrap">
+            <img src="image 24.png" alt="Fashion" />
+          </div>
+          <span>Fashion</span>
+        </a>
+        <a href="product.html" class="category-card" data-category="interior">
+          <div class="cat-img-wrap">
+            <img src="image 90.png" alt="Home & Interior" />
+          </div>
+          <span>Home & Interior</span>
+        </a>
+        <a href="product.html" class="category-card" data-category="tech">
+          <div class="cat-img-wrap">
+            <img src="image 34.png" alt="Computers" />
+          </div>
+          <span>Computers</span>
+        </a>
+        <a href="product.html" class="category-card" data-category="clothing">
+          <div class="cat-img-wrap">
+            <img src="image 26.png" alt="Clothing" />
+          </div>
+          <span>Clothing</span>
+        </a>
+        <a href="product.html" class="category-card" data-category="accessories">
+          <div class="cat-img-wrap">
+            <img src="image 85.png" alt="Accessories" />
+          </div>
+          <span>Accessories</span>
+        </a>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ============ FEATURED PRODUCTS ============ -->
+  <section class="section" id="deals">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">Hand-Picked</span>
+          <h2 class="section-title">Featured Products</h2>
+        </div>
+        <div class="tab-filters">
+          <button class="tab-btn active" onclick="filterProducts('all', this)">All</button>
+          <button class="tab-btn" onclick="filterProducts('electronics', this)">Electronics</button>
+          <button class="tab-btn" onclick="filterProducts('fashion', this)">Fashion</button>
+          <button class="tab-btn" onclick="filterProducts('interior', this)">Interior</button>
+        </div>
+      </div>
+ 
+      <div class="products-grid" id="productsGrid">
+ 
+        <!-- Product Card 1 -->
+        <div class="product-card" data-cat="electronics">
+          <div class="product-img-wrap">
+            <span class="badge badge-hot">HOT</span>
+            <img src="8.png" alt="Smart Watch Pro" />
+            <div class="product-overlay">
+              <button class="overlay-btn" onclick="addToWishlist(1)" title="Add to Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="overlay-btn" onclick="quickView(1)" title="Quick View">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">TechBrand</p>
+            <h3 class="product-name"><a href="product-detail.html">Smart Watch Pro X200</a></h3>
+            <div class="product-rating">
+              <div class="stars">★★★★★</div>
+              <span>(128)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">$89.99</span>
+              <span class="price-old">$129.99</span>
+              <span class="price-save">31% off</span>
+            </div>
+            <button class="btn btn-cart" onclick="addToCart(1, 'Smart Watch Pro X200', 89.99)">Add to Cart</button>
+          </div>
+        </div>
+ 
+        <!-- Product Card 2 -->
+        <div class="product-card" data-cat="electronics">
+          <div class="product-img-wrap">
+            <span class="badge badge-new">NEW</span>
+            <img src="image 29.png" alt="Wireless Earbuds" />
+            <div class="product-overlay">
+              <button class="overlay-btn" onclick="addToWishlist(2)" title="Add to Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="overlay-btn" onclick="quickView(2)" title="Quick View">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">SoundMax</p>
+            <h3 class="product-name"><a href="product-detail.html">Wireless Earbuds Elite</a></h3>
+            <div class="product-rating">
+              <div class="stars">★★★★☆</div>
+              <span>(84)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">$49.99</span>
+              <span class="price-old">$79.99</span>
+              <span class="price-save">37% off</span>
+            </div>
+            <button class="btn btn-cart" onclick="addToCart(2, 'Wireless Earbuds Elite', 49.99)">Add to Cart</button>
+          </div>
+        </div>
+ 
+        <!-- Product Card 3 -->
+        <div class="product-card" data-cat="fashion">
+          <div class="product-img-wrap">
+            <img src="2 1.png" alt="Premium Jacket" />
+            <div class="product-overlay">
+              <button class="overlay-btn" onclick="addToWishlist(3)" title="Add to Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="overlay-btn" onclick="quickView(3)" title="Quick View">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">FashionHub</p>
+            <h3 class="product-name"><a href="product-detail.html">Premium Casual Jacket</a></h3>
+            <div class="product-rating">
+              <div class="stars">★★★★★</div>
+              <span>(256)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">$59.99</span>
+              <span class="price-old">$99.99</span>
+              <span class="price-save">40% off</span>
+            </div>
+            <button class="btn btn-cart" onclick="addToCart(3, 'Premium Casual Jacket', 59.99)">Add to Cart</button>
+          </div>
+        </div>
+ 
+        <!-- Product Card 4 -->
+        <div class="product-card" data-cat="fashion">
+          <div class="product-img-wrap">
+            <span class="badge badge-sale">SALE</span>
+            <img src="image 30.png" alt="Designer Dress" />
+            <div class="product-overlay">
+              <button class="overlay-btn" onclick="addToWishlist(4)" title="Add to Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="overlay-btn" onclick="quickView(4)" title="Quick View">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">StyleCo</p>
+            <h3 class="product-name"><a href="product-detail.html">Coat for Men</a></h3>
+            <div class="product-rating">
+              <div class="stars">★★★★☆</div>
+              <span>(192)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">$34.99</span>
+              <span class="price-old">$59.99</span>
+              <span class="price-save">41% off</span>
+            </div>
+            <button class="btn btn-cart" onclick="addToCart(4, 'Coat for Men', 34.99)">Add to Cart</button>
+          </div>
+        </div>
+ 
+        <!-- Product Card 5 -->
+        <div class="product-card" data-cat="interior">
+          <div class="product-img-wrap">
+            <img src="6.png" alt="Modern Lamp" />
+            <div class="product-overlay">
+              <button class="overlay-btn" onclick="addToWishlist(5)" title="Add to Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="overlay-btn" onclick="quickView(5)" title="Quick View">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">HomeDecor</p>
+            <h3 class="product-name"><a href="product-detail.html">Nordic Table Lamp</a></h3>
+            <div class="product-rating">
+              <div class="stars">★★★★★</div>
+              <span>(67)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">$44.99</span>
+              <span class="price-old">$69.99</span>
+              <span class="price-save">35% off</span>
+            </div>
+            <button class="btn btn-cart" onclick="addToCart(5, 'Nordic Table Lamp', 44.99)">Add to Cart</button>
+          </div>
+        </div>
+ 
+        <!-- Product Card 6 -->
+        <div class="product-card" data-cat="electronics">
+          <div class="product-img-wrap">
+            <span class="badge badge-hot">HOT</span>
+            <img src="camera.png" alt="Camera" />
+            <div class="product-overlay">
+              <button class="overlay-btn" onclick="addToWishlist(6)" title="Add to Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="overlay-btn" onclick="quickView(6)" title="Quick View">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">SnapPro</p>
+            <h3 class="product-name"><a href="product-detail.html">Digital Camera 4K UHD</a></h3>
+            <div class="product-rating">
+              <div class="stars">★★★★★</div>
+              <span>(311)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">$199.99</span>
+              <span class="price-old">$299.99</span>
+              <span class="price-save">33% off</span>
+            </div>
+            <button class="btn btn-cart" onclick="addToCart(6, 'Digital Camera 4K UHD', 199.99)">Add to Cart</button>
+          </div>
+        </div>
+ 
+        <!-- Product Card 7 -->
+        <div class="product-card" data-cat="interior">
+          <div class="product-img-wrap">
+            <img src="image 89.png" alt="Decorative Vase" />
+            <div class="product-overlay">
+              <button class="overlay-btn" onclick="addToWishlist(7)" title="Add to Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="overlay-btn" onclick="quickView(7)" title="Quick View">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">ArtHaus</p>
+            <h3 class="product-name"><a href="product-detail.html">Ceramic Decorative Vase</a></h3>
+            <div class="product-rating">
+              <div class="stars">★★★★☆</div>
+              <span>(43)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">$24.99</span>
+              <span class="price-old">$39.99</span>
+              <span class="price-save">37% off</span>
+            </div>
+            <button class="btn btn-cart" onclick="addToCart(7, 'Ceramic Decorative Vase', 24.99)">Add to Cart</button>
+          </div>
+        </div>
+ 
+        <!-- Product Card 8 -->
+        <div class="product-card" data-cat="fashion">
+          <div class="product-img-wrap">
+            <span class="badge badge-new">NEW</span>
+            <img src="Bitmap.png" alt="Sports Wear" />
+            <div class="product-overlay">
+              <button class="overlay-btn" onclick="addToWishlist(8)" title="Add to Wishlist">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="overlay-btn" onclick="quickView(8)" title="Quick View">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">ActiveWear</p>
+            <h3 class="product-name"><a href="product-detail.html">Sport Wear Shirt</a></h3>
+            <div class="product-rating">
+              <div class="stars">★★★★★</div>
+              <span>(175)</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">$39.99</span>
+              <span class="price-old">$64.99</span>
+              <span class="price-save">38% off</span>
+            </div>
+            <button class="btn btn-cart" onclick="addToCart(8, 'Sport Wear Shirt', 39.99)">Add to Cart</button>
+          </div>
+        </div>
+ 
+      </div><!-- /products-grid -->
+    </div>
+  </section>
+ 
+  <!-- ============ PROMO BANNERS ============ -->
+  <section class="section promo-section">
+    <div class="container">
+      <div class="promo-grid">
+        <a href="product.html" class="promo-banner promo-large">
+          <img src="image 98.png" alt="Tech Sale" />
+          <div class="promo-text">
+            <span class="promo-tag">Limited Time</span>
+            <h3>Tech Mega Sale</h3>
+            <p>Up to 70% off on electronics</p>
+            <span class="promo-cta">Shop Now →</span>
+          </div>
+        </a>
+        <div class="promo-small-stack">
+          <a href="product.html" class="promo-banner promo-small">
+            <img src="image 106.png" alt="Fashion Week" />
+            <div class="promo-text">
+              <span class="promo-tag">Fashion Week</span>
+              <h3>New Arrivals</h3>
+              <span class="promo-cta">Explore →</span>
+            </div>
+          </a>
+          <a href="product.html" class="promo-banner promo-small">
+            <img src="image 107.png" alt="Home Collection" />
+            <div class="promo-text">
+              <span class="promo-tag">Home & Living</span>
+              <h3>Refresh Your Space</h3>
+              <span class="promo-cta">Discover →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  
+ 
+  <!-- ============ APP DOWNLOAD BANNER ============ -->
+  <section class="app-section">
+    <div class="container">
+      <div class="app-inner">
+        <div class="app-text">
+          <span class="section-eyebrow">Mobile App</span>
+          <h2>Shop Smarter on the Go</h2>
+          <p>Download our app for exclusive deals, faster checkout, and real-time order tracking — available on iOS & Android.</p>
+          <div class="app-btns">
+            <a href="#" class="app-store-btn">
+              <img src="market-button.png" alt="App Store" />
+            </a>
+            <a href="#" class="app-store-btn">
+              <img src="Group.png" alt="Google Play" />
+            </a>
+          </div>
+        </div>
+        <div class="app-image">
+          <img src="Group 969.png" alt="App Preview" />
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ============ NEWSLETTER ============ -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="newsletter-text">
+          <h3>Subscribe & Save 10%</h3>
+          <p>Get exclusive deals, new arrivals, and tips straight to your inbox.</p>
+        </div>
+        <div class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email address" />
+          <button class="btn btn-primary" onclick="subscribeNewsletter()">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="logo-colored.png" alt="ShopZone" />
+            <span>ShopZone</span>
+          </div>
+          <p>Your trusted global marketplace connecting buyers and sellers from 200+ countries worldwide.</p>
+          <div class="footer-social">
+            <a href="#" title="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" title="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+            <a href="#" title="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+ 
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+ 
+        <div class="footer-links">
+          <h4>Customer Service</h4>
+          <ul>
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+ 
+        <div class="footer-links">
+          <h4>For Suppliers</h4>
+          <ul>
+            <li><a href="#">Sell on ShopZone</a></li>
+            <li><a href="#">Supplier Portal</a></li>
+            <li><a href="#">Advertise</a></li>
+            <li><a href="#">Partner Program</a></li>
+          </ul>
+        </div>
+ 
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📞 +1 (800) 123-4567</p>
+          <p>✉️ support@shopzone.com</p>
+          <p>🕐 Mon–Fri, 9am–6pm EST</p>
+          <div class="footer-flags">
+            <img src="US@2x.png" alt="US" title="United States" />
+            <img src="GB@2x.png" alt="UK" title="United Kingdom" />
+            <img src="DE@2x.png" alt="DE" title="Germany" />
+            <img src="CN@2x.png" alt="CN" title="China" />
+            <img src="FR@2x.png" alt="FR" title="France" />
+          </div>
+        </div>
+      </div>
+ 
+      <div class="footer-bottom">
+        <p>© 2025 ShopZone. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+ 
+  <!-- ============ CART SIDEBAR ============ -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart <span id="cartItemCount">(0 items)</span></h3>
+      <button onclick="closeCart()" class="close-btn">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <p>Your cart is empty</p>
+        <a href="product.html" class="btn btn-primary" onclick="closeCart()">Start Shopping</a>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <button class="btn btn-primary full-width" onclick="checkout()">Checkout</button>
+    </div>
+  </div>
+ 
+  <!-- ============ TOAST NOTIFICATION ============ -->
+  <div class="toast" id="toast"></div>
+ 
+  <!-- ============ QUICK VIEW MODAL ============ -->
+  <div class="modal-overlay" id="quickViewOverlay" onclick="closeQuickView()"></div>
+  <div class="modal" id="quickViewModal">
+    <button class="close-btn modal-close" onclick="closeQuickView()">✕</button>
+    <div class="modal-content" id="quickViewContent"></div>
+  </div>
+ 
+  <script src="js/script.js"></script>
+</body>
+</html>
