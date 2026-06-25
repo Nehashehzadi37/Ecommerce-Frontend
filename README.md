@@ -22,19 +22,19 @@ ShopZone is a front-end eCommerce web application developed using pure web techn
 
 ### Shop by category
 
-![Products](categories.png)
+![Shop By Category](categories.png)
 
 ### Wishlist
 
-![Banner](wishlist.png)
+![Wishlist](wishlist.png)
 
 ### Cart
 
-![Banner](cart.png)
+![Cart](cart.png)
 
 ### Checkout
 
-![Banner](Checkout.png)
+![Checkout](checkout.png)
 
 ---
 
